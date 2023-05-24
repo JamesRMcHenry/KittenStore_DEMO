@@ -47,7 +47,8 @@ export function Navbar() {
             >
               {cartQuantity}
             </div>
-          </Button> )}
+          </Button> 
+          )}
     </Container>
   </NavbarBS>
   )

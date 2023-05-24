@@ -1,6 +1,7 @@
 import { Button, Card } from "react-bootstrap"
 import { formatCurrency } from "../utilities/formatCurrency"
 import { useShoppingCart } from "../context/shoppingCartContext"
+import React from "react"
 
 
 type StoreItemProps = {
