@@ -24,10 +24,12 @@ type ShoppingCartContext = {
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext)
 
+//This is the radio that listens for context
 export function useShoppingCart() {
   return useContext(ShoppingCartContext)
 }
 
+//This is the radio station that boradcasts the context
 export function ShoppingCartProvider({children} : ShoppingCartProviderProps) {
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping-cart",[])
   const [isOpen, setIsOpen] = useState(false)
@@ -38,16 +40,16 @@ export function ShoppingCartProvider({children} : ShoppingCartProviderProps) {
   const closeCart = () => setIsOpen(false)
 
   function getItemQuantity(id: number) {
-    return cartItems.find(item => item.id ===id)?.quantity || 0
+    return cartItems.find(item => item.id === id)?.quantity || 0
   }
 
   function increaseCartQuantity(id: number) {
     setCartItems(currItems => {
-      if (currItems.find(item => item.id ===id) == null) {
+      if (currItems.find(item => item.id === id) == null) {
         return [...currItems, {id, quantity: 1}]
       } else {
         return currItems.map(item => {
-          if (item.id ===id) {
+          if (item.id === id) {
           return { ...item, quantity: item.quantity + 1}
           } else {
             return item
@@ -59,11 +61,11 @@ export function ShoppingCartProvider({children} : ShoppingCartProviderProps) {
 
   function decreaseCartQuantity(id: number) {
     setCartItems(currItems => {
-      if (currItems.find(item => item.id ===id)?.quantity === 1) {
+      if (currItems.find(item => item.id === id)?.quantity === 1) {
         return currItems.filter(item => item.id !== id)
       } else {
         return currItems.map(item => {
-          if (item.id ===id) {
+          if (item.id === id) {
           return { ...item, quantity: item.quantity - 1}
           } else {
             return item
