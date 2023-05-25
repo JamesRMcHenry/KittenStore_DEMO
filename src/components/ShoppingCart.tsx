@@ -26,7 +26,7 @@ export function ShoppingCart ({isOpen}: ShoppingCartProps) {
           Total {formatCurrency(cartItems.reduce((total, cartItem) => {
             const item = storeItems.find((i: { id: number; }) => i.id ===cartItem.id)
             return total + (item?.price || 0) * cartItem.quantity
-          } ,0
+          }, 0
           ))}
         </div>
       </Stack>
